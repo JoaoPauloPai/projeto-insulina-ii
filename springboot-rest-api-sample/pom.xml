@@ -5,12 +5,14 @@
   <groupId>com.hackerrank.projects</groupId>
   <artifactId>springboot-rest-api-sample</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
+   <name>projeto-insulina</name>
+  <description>projeto controle de insulina</description>
 
   <properties>
-    <java.version>1.8</java.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>11</java.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -66,6 +68,13 @@
       <artifactId>spring-boot-test-autoconfigure</artifactId>
       <scope>test</scope>
     </dependency>
+    
+    	<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.25</version>
+			<scope>runtime</scope>
+		</dependency>
 
     <dependency>
       <groupId>junit</groupId>
