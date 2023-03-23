@@ -58,9 +58,9 @@ public class UsuarioController {
 		
 		
 		
-		Usuario usuario2 = usuarioRepository.save(usuario1);
+	//	Usuario usuario2 = usuarioRepository.save(usuario1);
 
-		return new ResponseEntity<Usuario>(usuario2, HttpStatus.OK);
+		return new ResponseEntity<Usuario>(usuario1, HttpStatus.OK);
 	}
 
 }
