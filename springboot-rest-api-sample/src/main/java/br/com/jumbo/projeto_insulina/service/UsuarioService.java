@@ -51,7 +51,7 @@ public class UsuarioService {
 
 		usuarioRepository.save(novoUsuario);
 
-		return usuario1;
+		return novoUsuario;
 	}
 
 }

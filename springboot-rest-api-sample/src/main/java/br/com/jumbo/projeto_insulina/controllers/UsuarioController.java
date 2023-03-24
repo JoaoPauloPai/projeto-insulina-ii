@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
 import br.com.jumbo.projeto_insulina.model.Usuario;
 import br.com.jumbo.projeto_insulina.repository.UsuarioRepository;
 import br.com.jumbo.projeto_insulina.service.UsuarioService;
@@ -37,10 +38,10 @@ public class UsuarioController {
 
 	@ResponseBody
 	@PostMapping(value = "**/salvarUsuario")
-	public ResponseEntity<Usuario> salvarUsuario(@RequestBody @Valid Usuario usuario) { // throws ExceptionJumboSistemas
-																						// {
+	public ResponseEntity<Usuario> salvarUsuario(@RequestBody @Valid Usuario usuario) throws ExceptionProjetoInsulina { 
+																						
 
-		// if (acesso.getId() == null) {
+		//if (acesso.getId() == null) {
 		// List<Acesso> acessos =
 		// acessoRepository.buscaAcessoDesc(acesso.getDescricao().toUpperCase());
 
@@ -50,15 +51,27 @@ public class UsuarioController {
 		// }
 		// }
 
-		// pessoaFisica = pessoaFisicaService.salvarPessoaFisica(pessoaFisica);
-
-		// Usuario usuario2 = usuarioRepository.save(usuario);
+		if(usuario.getId() == null) {
+			List<Usuario> usuarios =
+					usuarioRepository.buscaUsuarioLogin(usuario.getLogin().toUpperCase());
+			
+			if(!usuarios.isEmpty()) {
+				
+				throw new ExceptionProjetoInsulina("Já exixte Login com essa descrição: " + usuario.getLogin());
+				
+			}
+			List<Usuario> usuarios1 =
+			usuarioRepository.buscaUsuarioEmail(usuario.getEmail().toUpperCase());
+			if(!usuarios1.isEmpty()) { 
+				throw new ExceptionProjetoInsulina("O email: "+ usuario.getEmail() + " já está cadastrado no Banco de Dados");
+			}
+		}
 		
 	Usuario	usuario1 = usuarioService.salvaSenhaCriptUsuario(usuario);
 		
 		
 		
-	//	Usuario usuario2 = usuarioRepository.save(usuario1);
+	
 
 		return new ResponseEntity<Usuario>(usuario1, HttpStatus.OK);
 	}
