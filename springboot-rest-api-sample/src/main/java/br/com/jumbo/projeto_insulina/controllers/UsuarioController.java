@@ -40,17 +40,6 @@ public class UsuarioController {
 	@PostMapping(value = "**/salvarUsuario")
 	public ResponseEntity<Usuario> salvarUsuario(@RequestBody @Valid Usuario usuario) throws ExceptionProjetoInsulina { 
 																						
-
-		//if (acesso.getId() == null) {
-		// List<Acesso> acessos =
-		// acessoRepository.buscaAcessoDesc(acesso.getDescricao().toUpperCase());
-
-		// if (!acessos.isEmpty()) {
-		// throw new ExceptionJumboSistemas("Já existe Acesso com a descrição: " +
-		// acesso.getDescricao());
-		// }
-		// }
-
 		if(usuario.getId() == null) {
 			List<Usuario> usuarios =
 					usuarioRepository.buscaUsuarioLogin(usuario.getLogin().toUpperCase());

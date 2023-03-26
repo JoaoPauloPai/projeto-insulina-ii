@@ -7,15 +7,22 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.ManyToAny;
 
 /**
  * @author João Paulo
@@ -41,6 +48,18 @@ public class ControleDose implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Date data;
+
+	@ManyToOne(targetEntity = Paciente.class)
+	@JoinColumn(name = "paciente_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "paciente_fk"))
+	private Paciente paciente;
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
 
 	public Long getId() {
 		return id;

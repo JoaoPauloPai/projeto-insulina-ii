@@ -30,19 +30,6 @@ public class UsuarioService {
 
 		String senhaCript = new BCryptPasswordEncoder().encode(usuario1.getSenha());
 
-		// usuarioPf = new Usuario();
-		// usuarioPf.setDataAtualSenha(Calendar.getInstance().getTime());
-		// usuarioPf.setEmpresa(pessoaFisica.getEmpresa());
-		// usuarioPf.setPessoa(pessoaFisica);
-		// usuarioPf.setLogin(pessoaFisica.getEmail());
-
-		// String senha = "" + Calendar.getInstance().getTimeInMillis();
-		// String senhaCript = new BCryptPasswordEncoder().encode(senha);
-
-		// usuarioPf.setSenha(senhaCript);
-
-		// usuarioPf = usuarioRepository.save(usuarioPf);
-
 		Usuario novoUsuario = new Usuario();
 		novoUsuario.setEmail(usuario1.getEmail());
 		novoUsuario.setLogin(usuario1.getLogin());
