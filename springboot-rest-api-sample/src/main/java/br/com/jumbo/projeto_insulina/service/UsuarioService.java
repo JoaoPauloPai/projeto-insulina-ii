@@ -40,5 +40,7 @@ public class UsuarioService {
 
 		return novoUsuario;
 	}
+	
+	//String senhaNova = new 
 
 }
