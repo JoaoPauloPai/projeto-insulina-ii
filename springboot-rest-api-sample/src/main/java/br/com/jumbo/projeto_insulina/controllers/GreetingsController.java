@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * A sample greetings controller to return greeting text
- */
+
 @RestController
 public class GreetingsController {
 
