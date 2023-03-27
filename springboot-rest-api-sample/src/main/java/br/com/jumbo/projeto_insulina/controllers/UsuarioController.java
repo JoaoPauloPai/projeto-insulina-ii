@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
 import br.com.jumbo.projeto_insulina.model.Usuario;
@@ -38,6 +41,16 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioService usuarioService;
+	
+	@RequestMapping(method = RequestMethod.GET, value = "**/usuario/{idUsuario}")
+	public ModelAndView pagamento(@PathVariable(value = "idUsuario",
+								 required = false) String idUsuario) {
+
+		ModelAndView modelAndView = new ModelAndView("usuario");
+		
+		
+		return new ModelAndView("usuario");
+	}
 
 	@ResponseBody
 	@PostMapping(value = "**/salvarUsuario")
