@@ -26,22 +26,21 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = { "br.*" })
 @EnableJpaRepositories(basePackages = "br.com.jumbo.projeto_insulina.repository")
 @EnableTransactionManagement
-@EnableWebMvc
-public class ProjetoInsulinaApplication implements AsyncConfigurer, WebMvcConfigurer {
+public class ProjetoInsulinaApplication implements AsyncConfigurer {
 	
     public static void main(String[] args) {
     	
         SpringApplication.run(ProjetoInsulinaApplication.class, args);
     }
     
-	@Bean
-	public ViewResolver  viewResolver() {
+	//@Bean
+	//public ViewResolver  viewResolver() {
 		
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		//InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		
-		viewResolver.setPrefix("classpath:templates/");
-		viewResolver.setSuffix(".html");
+		//viewResolver.setPrefix("classpath:templates/");
+		//viewResolver.setSuffix(".html");
 		
-		return viewResolver;
-	}
+		//return viewResolver;
+	//}
 }
