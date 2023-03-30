@@ -23,8 +23,8 @@ import br.com.jumbo.projeto_insulina.model.Usuario;
 @Transactional
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
-	@Query("select p from Paciente p where p.usario == %?1%")
-	List<Paciente> buscaPacienteUsuarioId(Long usuario);
+	//@Query("select p from Paciente p where p.usario == %?1%")
+	//List<Paciente> buscaPacienteUsuarioId(Usuario usuario);
 
 
 
