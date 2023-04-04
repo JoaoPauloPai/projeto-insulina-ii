@@ -51,6 +51,7 @@ public class UsuarioController {
 		
 		return new ModelAndView("usuario");
 	}
+	
 
 	@ResponseBody
 	@PostMapping(value = "**/salvarUsuario")
@@ -146,6 +147,27 @@ public class UsuarioController {
 		}
 		
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@GetMapping(value = "**/logarUsuario/{id}")
+	public ResponseEntity<Usuario> logarUsuario(@PathVariable(name = "id") long id)
+			throws ExceptionProjetoInsulina {
+
+		Usuario usuario = usuarioRepository.findById(id).orElse(null);
+
+		if (usuario == null) {
+
+			throw new ExceptionProjetoInsulina("Não encotrado Usuario com código " + id);
+		}else if(usuario != null) {
+			Usuario usuarioLog = UsuarioService.consultarUsuario(id);
+			
+			
+			throw new ExceptionProjetoInsulina("usuario encontrado: "+ id);
+		}
+
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+
 	}
 
 }

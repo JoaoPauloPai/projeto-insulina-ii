@@ -23,9 +23,6 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-//	@Autowired
-//private Usuario usuario;
-
 	public Usuario salvaSenhaCriptUsuario(Usuario usuario1) {
 
 		String senhaCript = new BCryptPasswordEncoder().encode(usuario1.getSenha());
@@ -40,7 +37,13 @@ public class UsuarioService {
 
 		return novoUsuario;
 	}
+
+	public static Usuario consultarUsuario(long id) {
+		System.out.print("Id do usuario: "+ id);
+		
+		return null;
+	}
+
 	
-	//String senhaNova = new 
 
 }
