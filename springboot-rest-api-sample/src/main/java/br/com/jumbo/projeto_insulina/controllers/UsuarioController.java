@@ -160,9 +160,10 @@ public class UsuarioController {
 
 			throw new ExceptionProjetoInsulina("Não encotrado Usuario com código " + id);
 		}else if(usuario != null) {
-			Usuario usuarioLog = UsuarioService.consultarUsuario(id);
+			 usuario = UsuarioService.consultarUsuario(id);
+			 
 			
-			
+		
 			throw new ExceptionProjetoInsulina("usuario encontrado: "+ id);
 		}
 

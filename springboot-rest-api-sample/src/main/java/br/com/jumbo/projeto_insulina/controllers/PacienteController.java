@@ -37,22 +37,23 @@ public class PacienteController {
 	@PostMapping(value = "**/salvarPaciente")
 	public ResponseEntity<Paciente> salvarPaciente(@RequestBody @Valid Paciente paciente) throws ExceptionProjetoInsulina {
 
-	//	if (paciente.getId() == null) {
-		//	List<Paciente> pacientes = pacienteRepository.buscaPacienteUsuarioId(paciente.getUsuario());
+		if (paciente.getId() == null) {
+			
+			List<Paciente> pacientes = pacienteRepository.buscaPacienteUsuarioId(paciente);
 
-		//	if (!pacientes.isEmpty()) {
+			if (!pacientes.isEmpty()) {
 
-			//	throw new ExceptionProjetoInsulina("Já exixte Pacinte cadastrado para esse usuario: " + paciente.getUsuario());
+				throw new ExceptionProjetoInsulina("Já exixte Pacinte cadastrado para esse usuario: " + paciente.getUsuario());
 
-			//}
-	//	}
+			}
+		}
 		
 
 		//Usuario usuario1 = usuarioService.salvaSenhaCriptUsuario(usuario);
 		
-		Paciente paciente1 = pacienteRepository.save(paciente);
+		Paciente pacienteSalvo = pacienteRepository.save(paciente);
 
-		return new ResponseEntity<Paciente>(paciente1, HttpStatus.OK);
+		return new ResponseEntity<Paciente>(pacienteSalvo, HttpStatus.OK);
 	
 		
 	
