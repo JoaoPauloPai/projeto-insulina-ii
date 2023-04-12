@@ -39,7 +39,7 @@ public class PacienteController {
 
 		if (paciente.getId() == null) {
 			
-			List<Paciente> pacientes = pacienteRepository.buscaPacienteUsuarioId(paciente);
+			List<Paciente> pacientes = pacienteRepository.buscaPacienteUsuarioId(paciente.getUsuario());
 
 			if (!pacientes.isEmpty()) {
 

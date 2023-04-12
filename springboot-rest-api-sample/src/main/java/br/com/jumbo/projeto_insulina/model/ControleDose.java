@@ -28,6 +28,8 @@ import org.hibernate.annotations.ManyToAny;
  * @author João Paulo
  *
  *         12 de mar. de 2023 15:54:56
+ *         
+ *         TETSYAYIEUIWU
  */
 @Entity
 @Table(name = "controle_dose")
