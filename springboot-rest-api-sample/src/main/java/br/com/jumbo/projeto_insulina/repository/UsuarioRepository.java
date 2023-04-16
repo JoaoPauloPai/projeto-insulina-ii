@@ -5,11 +5,14 @@ package br.com.jumbo.projeto_insulina.repository;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.jumbo.projeto_insulina.model.Paciente;
 import br.com.jumbo.projeto_insulina.model.Usuario;
 
 /**
@@ -38,5 +41,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	@Query("select u from Usuario u where u.email like %?1%")
 	List<Usuario> logarUsuarioEmail(String email);
+
+	@Query("select u from Usuario u where u.id = ?1")
+	Paciente consultaIdUsuario(Long id);
+
+
+
+
 
 }
