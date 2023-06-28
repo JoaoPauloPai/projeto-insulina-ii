@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -157,14 +158,34 @@ public class UsuarioController {
 		Usuario usuario = usuarioRepository.findById(id).orElse(null);
 
 		if (usuario == null) {
-
+			
 			throw new ExceptionProjetoInsulina("Não encotrado Usuario com código " + id);
+			
+		
 		}else if(usuario != null) {
-			 usuario = UsuarioService.consultarUsuario(id);
+			
+			Long numero = (long) 34;
+			String senha1 = "123";
+			String senhaCript = new BCryptPasswordEncoder().encode(senha1);
+			
+			if(usuario.getSenha().equals(senhaCript)) {
+				
+				throw new ExceptionProjetoInsulina("Senha confere com o número digitado ");
+				
+			}else {
+				throw new ExceptionProjetoInsulina("Senha não confere com o número digitado ");
+			}
+			
+	//throw new ExceptionProjetoInsulina("Usuario encotrado " + usuario.getNome() + " login: " + usuario.getLogin()
+			//+ " senha: "+usuario.getSenha() + " email: " + usuario.getEmail());
+			
+			
+			
+			 //usuario = UsuarioService.consultarUsuario(id);
 			 
 			
 		
-			throw new ExceptionProjetoInsulina("usuario encontrado: "+ id);
+			//throw new ExceptionProjetoInsulina("usuario encontrado:  " + usuario.getId());
 		}
 
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);

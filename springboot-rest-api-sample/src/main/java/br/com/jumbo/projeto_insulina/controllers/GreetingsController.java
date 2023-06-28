@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 @RestController
 public class GreetingsController {
+	
 
-    @RequestMapping(value = "/consulta-nome/{name}", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public String greetingText(@PathVariable String name) {
-        return "Projeto Insulina " + name + "!";
-    }
+
+	@RequestMapping(value = "/consulta-nome/{name}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String greetingText(@PathVariable String name) {
+		return "Projeto Insulina " + name + "!";
+	}
+
+
 }

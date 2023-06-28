@@ -41,11 +41,11 @@ public class PacienteController {
 
 		if (paciente.getId() == null) {
 			
-		paciente = usuarioRepository.consultaIdUsuario(paciente.getUsuario().getId());
+		//paciente = usuarioRepository.consultaIdUsuario(paciente.getUsuario().getId());
 		
 	//	if(paciente.getUsuario().getId() == null) {
-		throw new ExceptionProjetoInsulina(
-						"O Código: " + paciente.getUsuario().getId() + ", do usuario não foi encotrado no banco de dados");
+		//throw new ExceptionProjetoInsulina(
+			//			"O Código: " + paciente.getUsuario().getId() + ", do usuario não foi encotrado no banco de dados");
 		//}
 		
 		}
