@@ -43,20 +43,34 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "**/usuario/{idUsuario}")
-	public ModelAndView pagamento(@PathVariable(value = "idUsuario",
-								 required = false) String idUsuario) {
+	@ResponseBody
+	@PostMapping(value = "**/salvarUsuario")
+	public ResponseEntity<Usuario> salvarUsuario(@RequestBody @Valid Usuario usuario) throws ExceptionProjetoInsulina {
 
-		ModelAndView modelAndView = new ModelAndView("usuario");
-		
-		
-		return new ModelAndView("usuario");
+		if (usuario.getId() == null) {
+			List<Usuario> usuarios = usuarioRepository.buscaUsuarioLogin(usuario.getLogin().toUpperCase());
+
+			if (!usuarios.isEmpty()) {
+
+				throw new ExceptionProjetoInsulina("Já exixte Login com essa descrição: " + usuario.getLogin());
+
+			}
+			List<Usuario> usuarios1 = usuarioRepository.buscaUsuarioEmail(usuario.getEmail().toUpperCase());
+			if (!usuarios1.isEmpty()) {
+				throw new ExceptionProjetoInsulina(
+						"O email: " + usuario.getEmail() + " já está cadastrado no Banco de Dados");
+			}
+		}
+
+		Usuario usuario1 = usuarioService.salvaUsuario(usuario);
+
+		return new ResponseEntity<Usuario>(usuario1, HttpStatus.OK);
 	}
 	
 
 	@ResponseBody
-	@PostMapping(value = "**/salvarUsuario")
-	public ResponseEntity<Usuario> salvarUsuario(@RequestBody @Valid Usuario usuario) throws ExceptionProjetoInsulina {
+	@PostMapping(value = "**/salvarUsuarioSenhaCript")
+	public ResponseEntity<Usuario> salvarUsuarioSenhaCript(@RequestBody @Valid Usuario usuario) throws ExceptionProjetoInsulina {
 
 		if (usuario.getId() == null) {
 			List<Usuario> usuarios = usuarioRepository.buscaUsuarioLogin(usuario.getLogin().toUpperCase());
@@ -115,9 +129,15 @@ public class UsuarioController {
 	
 	@ResponseBody
 	@GetMapping(value = "**/buscaUsuarioPorLogin/{login}")
-	public ResponseEntity<List<Usuario>> buscaUsuarioPorDesc(@PathVariable("login") String login) {
+	public ResponseEntity<List<Usuario>> buscaUsuarioPorDesc(@PathVariable("login") String login)throws ExceptionProjetoInsulina {
 
 		List<Usuario> usuario = usuarioRepository.buscaUsuarioPorDesc(login.toUpperCase());
+	
+		if (usuario.isEmpty()) {
+
+			throw new ExceptionProjetoInsulina("O Usuario: " + login + ", não contém no banco de dados. ");
+		}
+
 
 		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
 	}
@@ -150,31 +170,58 @@ public class UsuarioController {
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 	
+//@ResponseBody
+//	@GetMapping(value = "**/buscaUsuarioPorLogin/{login}")
+ //  public ResponseEntity<List<Usuario>> buscaUsuarioPorDesc(@PathVariable("login") String login)throws ExceptionProjetoInsulina {
+
+		//List<Usuario> usuario = usuarioRepository.buscaUsuarioPorDesc(login.toUpperCase());
+	
+	//	if (usuario.isEmpty()) {
+
+		//	throw new ExceptionProjetoInsulina("O Usuario: " + login + ", não contém no banco de dados. ");
+	//	}
+
+
+		//return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
+	//}
+	
 	@ResponseBody
-	@GetMapping(value = "**/logarUsuario/{id}")
-	public ResponseEntity<Usuario> logarUsuario(@PathVariable(name = "id") long id)
-			throws ExceptionProjetoInsulina {
+	@GetMapping(value = "**/logarUsuario/{login}")
+	 public ResponseEntity<List<Usuario>> logarUsuario(@PathVariable("login") String login)throws ExceptionProjetoInsulina {
+		
+		List<Usuario> usuario = usuarioRepository.buscaUsuarioPorDesc(login.toUpperCase());
+		
+			if (usuario.isEmpty()) {
+				
+				
 
-		Usuario usuario = usuarioRepository.findById(id).orElse(null);
-
-		if (usuario == null) {
+				throw new ExceptionProjetoInsulina("O Usuario: " + login + ", não contém no banco de dados. ");
 			
-			throw new ExceptionProjetoInsulina("Não encotrado Usuario com código " + id);
+			
+			}
+
+
+			return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
+		}
+			
+		//	throw new ExceptionProjetoInsulina("Não encotrado Usuario com código " + login);
 			
 		
-		}else if(usuario != null) {
+	//	}else if(usuario != null) {
 			
-			Long numero = (long) 34;
-			String senha1 = "123";
-			String senhaCript = new BCryptPasswordEncoder().encode(senha1);
+		//	Long numero = (long) 37;
+		//	String senha1 = "123";
+			   
+	
 			
-			if(usuario.getSenha().equals(senhaCript)) {
+			
+	
 				
-				throw new ExceptionProjetoInsulina("Senha confere com o número digitado ");
+			//	throw new ExceptionProjetoInsulina("Senha confere com o número digitado ");
 				
-			}else {
-				throw new ExceptionProjetoInsulina("Senha não confere com o número digitado ");
-			}
+			//}else {
+			//	throw new ExceptionProjetoInsulina("Senha não confere com o número digitado ");
+		//	}
 			
 	//throw new ExceptionProjetoInsulina("Usuario encotrado " + usuario.getNome() + " login: " + usuario.getLogin()
 			//+ " senha: "+usuario.getSenha() + " email: " + usuario.getEmail());
@@ -186,10 +233,11 @@ public class UsuarioController {
 			
 		
 			//throw new ExceptionProjetoInsulina("usuario encontrado:  " + usuario.getId());
-		}
+	
 
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		//return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 
-	}
-
+	//}
+		//return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+       //   }
 }

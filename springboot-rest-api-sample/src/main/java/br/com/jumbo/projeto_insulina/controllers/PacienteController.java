@@ -3,6 +3,8 @@
  */
 package br.com.jumbo.projeto_insulina.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
 import br.com.jumbo.projeto_insulina.model.Paciente;
+import br.com.jumbo.projeto_insulina.model.Usuario;
 import br.com.jumbo.projeto_insulina.repository.PacienteRepository;
 import br.com.jumbo.projeto_insulina.repository.UsuarioRepository;
 
@@ -35,24 +38,58 @@ public class PacienteController {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
+	//@ResponseBody
+//	@PostMapping(value = "**/salvarUsuario")
+	/**public ResponseEntity<Usuario> salvarUsuario(@RequestBody @Valid Usuario usuario) throws ExceptionProjetoInsulina {
+
+		if (usuario.getId() == null) {
+			List<Usuario> usuarios = usuarioRepository.buscaUsuarioLogin(usuario.getLogin().toUpperCase());
+
+			if (!usuarios.isEmpty()) {
+
+				throw new ExceptionProjetoInsulina("Já exixte Login com essa descrição: " + usuario.getLogin());
+
+			}
+			List<Usuario> usuarios1 = usuarioRepository.buscaUsuarioEmail(usuario.getEmail().toUpperCase());
+			if (!usuarios1.isEmpty()) {
+				throw new ExceptionProjetoInsulina(
+						"O email: " + usuario.getEmail() + " já está cadastrado no Banco de Dados");
+			}
+		}
+
+		Usuario usuario1 = usuarioService.salvaUsuario(usuario);
+
+		return new ResponseEntity<Usuario>(usuario1, HttpStatus.OK);
+	}*/
+	
 	@ResponseBody
 	@PostMapping(value = "**/salvarPaciente")
 	public ResponseEntity<Paciente> salvarPaciente(@RequestBody @Valid Paciente paciente) throws ExceptionProjetoInsulina {
 
 		if (paciente.getId() == null) {
 			
-		//paciente = usuarioRepository.consultaIdUsuario(paciente.getUsuario().getId());
+			List<Paciente> pacientes = pacienteRepository.buscaPaciente(paciente.getUsuario().getId());
+		
+			if(!pacientes.isEmpty()) {
+				throw new ExceptionProjetoInsulina("Já exixte Paciente cadastrado para este usuario.");
+				
+				//System.out.println("Tem usuario, id: " + paciente.getUsuario().getId());
+			
+			}
+			
+			System.out.println("Não Tem usuario, id: " + paciente.getUsuario().getId());
+			//paciente = usuarioRepository.consultaIdUsuario(paciente.getUsuario().getId());
 		
 	//	if(paciente.getUsuario().getId() == null) {
 		//throw new ExceptionProjetoInsulina(
 			//			"O Código: " + paciente.getUsuario().getId() + ", do usuario não foi encotrado no banco de dados");
 		//}
 		
-		}
+		//}
 		//if (pacienteRepository.findById(paciente.getUsuario().getId()).isPresent() == false) {
 		//	throw new ExceptionProjetoInsulina(
 		//			"O Código: " + paciente.getUsuario().getId() + ", do usuario não foi encotrado no banco de dados");
-		//}
+		}
 		
 	//	if (paciente.getId() == null) {
 		

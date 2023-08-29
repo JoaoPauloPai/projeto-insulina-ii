@@ -5,6 +5,8 @@ package br.com.jumbo.projeto_insulina.service;
 
 import java.util.Calendar;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -52,6 +54,21 @@ public class UsuarioService {
 		//System.out.print("Id do usuario: "+ id);
 		
 		return null;
+	}
+
+
+
+	public Usuario salvaUsuario(Usuario usuario1) {
+
+		Usuario novoUsuario = new Usuario();
+		novoUsuario.setEmail(usuario1.getEmail());
+		novoUsuario.setLogin(usuario1.getLogin());
+		novoUsuario.setNome(usuario1.getNome());
+		novoUsuario.setSenha(usuario1.getSenha());
+
+		usuarioRepository.save(novoUsuario);
+
+		return novoUsuario;
 	}
 
 	
