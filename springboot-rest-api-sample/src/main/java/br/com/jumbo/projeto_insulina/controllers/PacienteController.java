@@ -71,11 +71,14 @@ public class PacienteController {
 			List<Paciente> pacientes = pacienteRepository.buscaPaciente(paciente.getUsuario().getId());
 		
 			if(!pacientes.isEmpty()) {
-				throw new ExceptionProjetoInsulina("Já exixte Paciente cadastrado para este usuario.");
+				throw new ExceptionProjetoInsulina("Já exixte Paciente cadastrado para este usuario.");	
 				
-				//System.out.println("Tem usuario, id: " + paciente.getUsuario().getId());
-			
 			}
+			
+			List<Paciente> pacienteUsurios = pacienteRepository.busaPacienteUsuario(paciente.getUsuario().getId());
+			
+			
+
 			
 			System.out.println("Não Tem usuario, id: " + paciente.getUsuario().getId());
 			//paciente = usuarioRepository.consultaIdUsuario(paciente.getUsuario().getId());
@@ -116,6 +119,7 @@ public class PacienteController {
 		
 	
 }
-}
+	}
+
 
 
