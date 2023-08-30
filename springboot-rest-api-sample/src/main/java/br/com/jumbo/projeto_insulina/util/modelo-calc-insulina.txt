@@ -1,0 +1,79 @@
+
+
+      ----Parametros de entrada-----
+
+
+public class InsulinCalculationInput {
+    private double carbohydrateAmount; // Quantidade de carboidratos em gramas
+    private double glucoseLevel; // Nível de glicose no sangue em mg/dL
+
+    // Getters e setters
+}
+
+
+
+
+       -------------------------------------------
+
+
+
+             Serviço para realizar calculos
+
+
+@Service
+public class InsulinCalculationService {
+
+    // Fator de carboidrato: quantas unidades de insulina por grama de carboidrato
+    private static final double CARB_RATIO = 0.5;
+
+    // Fator de sensibilidade à insulina: quantas unidades de insulina por mg/dL de glicose acima do alvo
+    private static final double SENSITIVITY_FACTOR = 0.1;
+
+    public double calculateInsulinDose(InsulinCalculationInput input) {
+        double carbDose = input.getCarbohydrateAmount() * CARB_RATIO;
+        double glucoseCorrection = (input.getGlucoseLevel() - 100) * SENSITIVITY_FACTOR;
+
+        double totalDose = carbDose + glucoseCorrection;
+
+        return totalDose;
+    }
+}
+
+
+            --------------------------------------
+
+
+               Controller para lidar com as cituações
+
+
+
+
+
+
+
+@RestController
+@RequestMapping("/insulin")
+public class InsulinCalculationController {
+
+    @Autowired
+    private InsulinCalculationService insulinCalculationService;
+
+    @PostMapping("/calculate")
+    public ResponseEntity<String> calculateInsulinDose(@RequestBody InsulinCalculationInput input) {
+        double insulinDose = insulinCalculationService.calculateInsulinDose(input);
+        String response = "A dose de insulina a ser aplicada é: " + insulinDose + " unidades.";
+
+        return ResponseEntity.ok(response);
+    }
+}
+
+
+
+           -----------------------------------------------------
+
+
+
+
+
+
+
