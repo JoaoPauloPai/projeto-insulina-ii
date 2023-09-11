@@ -56,8 +56,6 @@ public class UsuarioService {
 		return null;
 	}
 
-
-
 	public Usuario salvaUsuario(Usuario usuario1) {
 
 		Usuario novoUsuario = new Usuario();
@@ -70,7 +68,5 @@ public class UsuarioService {
 
 		return novoUsuario;
 	}
-
-	
 
 }
