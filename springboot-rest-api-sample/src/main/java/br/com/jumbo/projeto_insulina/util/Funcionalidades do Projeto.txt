@@ -1,0 +1,14 @@
+2.2 Funcionalidade do Produto 
+
+•	Salvar a senha do usuário  -  ok
+•	Salvar o login do usuário  -  ok
+•	Verificar o login se já existe no BD - ok
+•	Salvar e-mail do usuário  - ok
+•	Verificar o e-mail se já existe no BD - ok
+•	Salvar nome do paciente  - ok
+•	Verificar se usuário já tem paciente cadastrado  - ok
+•	Salvar idade do paciente - ok
+•	Salvar grau parentesco paciente/usuário  - ok
+•	Salvar sexo do paciente  - ok
+•	Calcular doses de insulina e salvar no BD - ok
+•	Gerar relatórios das doses aplicadas
