@@ -3,6 +3,7 @@
  */
 package br.com.jumbo.projeto_insulina.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
+import br.com.jumbo.projeto_insulina.dto.ObjetoRelatorioControleDose;
 import br.com.jumbo.projeto_insulina.model.ControleDose;
 import br.com.jumbo.projeto_insulina.model.Usuario;
 import br.com.jumbo.projeto_insulina.repository.ControleDoseRepository;
@@ -62,6 +64,20 @@ public class ControleDoseController {
 		// Usuario usuario1 = usuarioService.salvaUsuario(usuario);
 
 		return new ResponseEntity<ControleDose>(controleDose1, HttpStatus.OK);
+	}
+	
+	
+	@ResponseBody
+	@PostMapping(value = "**/relatorioDoseAplicada")
+	public ResponseEntity<List<ObjetoRelatorioControleDose>> relatorioDoseAplicada(@Valid 
+			             @RequestBody  ObjetoRelatorioControleDose obejtoRequisicaoRelatorioDoseAplicada){
+		
+		List<ObjetoRelatorioControleDose> retorno = new ArrayList<ObjetoRelatorioControleDose>();
+		
+		retorno = controleDoseService.relatorioDoseAplicada(obejtoRequisicaoRelatorioDoseAplicada);
+		
+		return new ResponseEntity<List<ObjetoRelatorioControleDose>>(retorno, HttpStatus.OK);
+		
 	}
 
 }
