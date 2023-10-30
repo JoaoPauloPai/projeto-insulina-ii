@@ -41,43 +41,28 @@ public class ControleDoseController {
 	public ResponseEntity<ControleDose> salvarControleDose(@RequestBody @Valid ControleDose controleDose)
 			throws ExceptionProjetoInsulina {
 
-		// if (controleDose.getId() == null) {
-		// List<ControleDose> controleDoses =
-		// usuarioRepository.buscaUsuarioLogin(usuario.getLogin().toUpperCase());
-		// ControleDoseRepository.buscaControlerLogin
+		if (controleDose.getDoseAplicada() == 0 || controleDose.getDoseAplicada() < 0) {
 
-		// if (!usuarios.isEmpty()) {
+			throw new ExceptionProjetoInsulina("A dose a ser aplicada deve ser maior que zero.");
 
-		// throw new ExceptionProjetoInsulina("Já exixte Login com essa descrição: " +
-		// usuario.getLogin());
-
-		// }
-		// List<Usuario> usuarios1 =
-		// usuarioRepository.buscaUsuarioEmail(usuario.getEmail().toUpperCase());
-		// if (!usuarios1.isEmpty()) {
-		// throw new ExceptionProjetoInsulina(
-		// "O email: " + usuario.getEmail() + " já está cadastrado no Banco de Dados");
-		// }
-//	}
+		}
 
 		ControleDose controleDose1 = controleDoseService.salvarControleDose(controleDose);
-		// Usuario usuario1 = usuarioService.salvaUsuario(usuario);
 
 		return new ResponseEntity<ControleDose>(controleDose1, HttpStatus.OK);
 	}
-	
-	
+
 	@ResponseBody
 	@PostMapping(value = "**/relatorioDoseAplicada")
-	public ResponseEntity<List<ObjetoRelatorioControleDose>> relatorioDoseAplicada(@Valid 
-			             @RequestBody  ObjetoRelatorioControleDose obejtoRequisicaoRelatorioDoseAplicada){
-		
+	public ResponseEntity<List<ObjetoRelatorioControleDose>> relatorioDoseAplicada(
+			@Valid @RequestBody ObjetoRelatorioControleDose obejtoRequisicaoRelatorioDoseAplicada) {
+
 		List<ObjetoRelatorioControleDose> retorno = new ArrayList<ObjetoRelatorioControleDose>();
-		
+
 		retorno = controleDoseService.relatorioDoseAplicada(obejtoRequisicaoRelatorioDoseAplicada);
-		
+
 		return new ResponseEntity<List<ObjetoRelatorioControleDose>>(retorno, HttpStatus.OK);
-		
+
 	}
 
 }

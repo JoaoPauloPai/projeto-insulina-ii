@@ -3,7 +3,10 @@
  */
 package br.com.jumbo.projeto_insulina.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-
 
 import br.com.jumbo.projeto_insulina.dto.ObjetoRelatorioControleDose;
 import br.com.jumbo.projeto_insulina.model.ControleDose;
@@ -33,13 +35,14 @@ public class ControleDoseService {
 	private ControleDoseRepository controleDoseRepository;
 
 	/**
+	 * Salva os dados da dose aplpicada no banco de dados
 	 * @param controleDose
 	 * @return
 	 */
 	public ControleDose salvarControleDose(ControleDose controleDose1) {
 
 		ControleDose novoControleDose = new ControleDose();
-		novoControleDose.setData(controleDose1.getData());
+		novoControleDose.setData(Calendar.getInstance().getTime());
 		novoControleDose.setDoseAplicada(controleDose1.getDoseAplicada());
 		novoControleDose.setPaciente(controleDose1.getPaciente());
 
@@ -60,24 +63,16 @@ public class ControleDoseService {
 
 		List<ObjetoRelatorioControleDose> retorno = new ArrayList<ObjetoRelatorioControleDose>();
 
-		String sql = "select p.nome as nomePaciente, "
-				+ " p.sexo as sexo, "
-				+ " cd.data as dataDose, "
-				+ " cd.dose_aplicada as doseAplicada, "
-				+ " cd.paciente_id as codigoPaciente "
-				+ " from paciente as p "
+		String sql = "select p.nome as nomePaciente, " + " p.sexo as sexo, " + " cd.data as dataDose, "
+				+ " cd.dose_aplicada as doseAplicada, " + " cd.paciente_id as codigoPaciente " + " from paciente as p "
 				+ " inner join controle_dose as cd on cd.paciente_id = p.id "
 				+ " inner join usuario as u on u.id = p.usuario_id ";
-				sql += " where cd.paciente_id = " +
-				obejtoRequisicaoRelatorioDoseAplicada.getCodigoPaciente();
-				
-				sql += " and cd.data>= '" +
-				obejtoRequisicaoRelatorioDoseAplicada.getDataInicial()
-				+ "' and cd.data <= '" +
-				obejtoRequisicaoRelatorioDoseAplicada.getDataFinal() +"' ";
-		
+		sql += " where cd.paciente_id = " + obejtoRequisicaoRelatorioDoseAplicada.getCodigoPaciente();
 
-				retorno = jdbcTemplate.query(sql, new BeanPropertyRowMapper(ObjetoRelatorioControleDose.class));
+		sql += " and cd.data>= '" + obejtoRequisicaoRelatorioDoseAplicada.getDataInicial() + "' and cd.data <= '"
+				+ obejtoRequisicaoRelatorioDoseAplicada.getDataFinal() + "' ";
+
+		retorno = jdbcTemplate.query(sql, new BeanPropertyRowMapper(ObjetoRelatorioControleDose.class));
 
 		return retorno;
 	}

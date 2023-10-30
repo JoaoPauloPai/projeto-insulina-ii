@@ -45,7 +45,7 @@ public class ControleDose implements Serializable {
 	@Column(nullable = false)
 	private double doseAplicada;
 
-	@NotNull(message = "A data deve ser Informada")
+	//@NotNull(message = "A data deve ser Informada")
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Date data;
