@@ -7,12 +7,16 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import br.com.jumbo.projeto_insulina.enums.TipoSenha;
 
 /**
  * @author João Paulo
@@ -37,6 +41,11 @@ public class Usuario implements Serializable {
 	@NotNull(message = "A senha deve ser Informada")
 	@Column(nullable = false)
 	private String senha;
+	
+	@NotNull(message = "O Tipo Senha deve ser informada")
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private TipoSenha tipoSenha;
 
 	@NotNull(message = "O nome do Usuario deve ser Informado")
 	@Column(nullable = false)
@@ -85,6 +94,16 @@ public class Usuario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	
+
+	public TipoSenha getTipoSenha() {
+		return tipoSenha;
+	}
+
+	public void setTipoSenha(TipoSenha tipoSenha) {
+		this.tipoSenha = tipoSenha;
+	}
 
 	@Override
 	public int hashCode() {
@@ -110,5 +129,8 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
+
+	
+
 
 }

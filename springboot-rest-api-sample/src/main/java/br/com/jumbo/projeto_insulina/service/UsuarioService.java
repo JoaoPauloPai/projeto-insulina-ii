@@ -34,6 +34,7 @@ public class UsuarioService {
 		Usuario novoUsuario = new Usuario();
 		novoUsuario.setEmail(usuario1.getEmail());
 		novoUsuario.setLogin(usuario1.getLogin());
+		novoUsuario.setTipoSenha(usuario1.getTipoSenha());
 		novoUsuario.setNome(usuario1.getNome());
 		novoUsuario.setSenha(senhaCript);
 
@@ -61,6 +62,7 @@ public class UsuarioService {
 		Usuario novoUsuario = new Usuario();
 		novoUsuario.setEmail(usuario1.getEmail());
 		novoUsuario.setLogin(usuario1.getLogin());
+		novoUsuario.setTipoSenha(usuario1.getTipoSenha());
 		novoUsuario.setNome(usuario1.getNome());
 		novoUsuario.setSenha(usuario1.getSenha());
 

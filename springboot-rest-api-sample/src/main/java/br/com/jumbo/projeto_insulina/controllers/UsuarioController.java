@@ -60,11 +60,21 @@ public class UsuarioController {
 				throw new ExceptionProjetoInsulina(
 						"O email: " + usuario.getEmail() + " já está cadastrado no Banco de Dados");
 			}
+			
+		}if(usuario.getTipoSenha().getDescricao().equalsIgnoreCase("SIMPLES")){
+			
+			Usuario usuario1 = usuarioService.salvaUsuario(usuario);
+		//	return new ResponseEntity<Usuario>(usuario1, HttpStatus.OK);
+			
+		}if(usuario.getTipoSenha().getDescricao().equalsIgnoreCase("CRYPTO")) {
+			
+			Usuario usuario1 = usuarioService.salvaSenhaCriptUsuario(usuario);
+		//	return new ResponseEntity<Usuario>(usuario1, HttpStatus.OK);
 		}
-
-		Usuario usuario1 = usuarioService.salvaUsuario(usuario);
-
-		return new ResponseEntity<Usuario>(usuario1, HttpStatus.OK);
+           
+		
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		
 	}
 	
 

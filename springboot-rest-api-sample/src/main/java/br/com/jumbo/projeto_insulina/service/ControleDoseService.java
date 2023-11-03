@@ -52,8 +52,8 @@ public class ControleDoseService {
 	}
 
 	/**
-	 * Este relatório permite saber as doses aplicada por pacientes e datas início e
-	 * fim
+	 * Este relatório permite saber as doses aplicada por pacientes, datas início e fim.
+	 * 
 	 * 
 	 * @param obejtoRequisicaoRelatorioDoseAplicada
 	 * @return
@@ -63,8 +63,12 @@ public class ControleDoseService {
 
 		List<ObjetoRelatorioControleDose> retorno = new ArrayList<ObjetoRelatorioControleDose>();
 
-		String sql = "select p.nome as nomePaciente, " + " p.sexo as sexo, " + " cd.data as dataDose, "
-				+ " cd.dose_aplicada as doseAplicada, " + " cd.paciente_id as codigoPaciente " + " from paciente as p "
+		String sql = "select p.nome as nomePaciente, " 
+		        + " p.sexo as sexo, " 
+				+ " cd.data as dataDose, "
+				+ " cd.dose_aplicada as doseAplicada, " 
+				+ " cd.paciente_id as codigoPaciente " 
+				+ " from paciente as p "
 				+ " inner join controle_dose as cd on cd.paciente_id = p.id "
 				+ " inner join usuario as u on u.id = p.usuario_id ";
 		sql += " where cd.paciente_id = " + obejtoRequisicaoRelatorioDoseAplicada.getCodigoPaciente();
