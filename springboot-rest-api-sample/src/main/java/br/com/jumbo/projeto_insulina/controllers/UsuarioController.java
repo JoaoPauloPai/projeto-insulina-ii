@@ -164,24 +164,6 @@ public class UsuarioController {
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 
-//@ResponseBody
-//	@GetMapping(value = "**/buscaUsuarioPorLogin/{login}")
-	// public ResponseEntity<List<Usuario>>
-	// buscaUsuarioPorDesc(@PathVariable("login") String login)throws
-	// ExceptionProjetoInsulina {
-
-	// List<Usuario> usuario =
-	// usuarioRepository.buscaUsuarioPorDesc(login.toUpperCase());
-
-	// if (usuario.isEmpty()) {
-
-	// throw new ExceptionProjetoInsulina("O Usuario: " + login + ", não contém no
-	// banco de dados. ");
-	// }
-
-	// return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
-	// }
-
 	@ResponseBody
 	@GetMapping(value = "**/logarUsuario/{login}")
 	public ResponseEntity<List<Usuario>> logarUsuario(@PathVariable("login") String login)
@@ -198,32 +180,5 @@ public class UsuarioController {
 		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
 	}
 
-	// throw new ExceptionProjetoInsulina("Não encotrado Usuario com código " +
-	// login);
 
-	// }else if(usuario != null) {
-
-	// Long numero = (long) 37;
-	// String senha1 = "123";
-
-	// throw new ExceptionProjetoInsulina("Senha confere com o número digitado ");
-
-	// }else {
-	// throw new ExceptionProjetoInsulina("Senha não confere com o número digitado
-	// ");
-	// }
-
-	// throw new ExceptionProjetoInsulina("Usuario encotrado " + usuario.getNome() +
-	// " login: " + usuario.getLogin()
-	// + " senha: "+usuario.getSenha() + " email: " + usuario.getEmail());
-
-	// usuario = UsuarioService.consultarUsuario(id);
-
-	// throw new ExceptionProjetoInsulina("usuario encontrado: " + usuario.getId());
-
-	// return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
-
-	// }
-	// return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
-	// }
 }
