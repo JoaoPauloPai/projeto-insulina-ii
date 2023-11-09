@@ -43,19 +43,6 @@ public class UsuarioService {
 		return novoUsuario;
 	}
 
-	public static Usuario consultarUsuario(long id) {
-	
-		if(id == 12) {
-			System.out.print("Id do usuario: "+ id + " Está correto e deve ser logado.");
-		}else {
-			System.out.print("O usuario: "+ id + " não existe no banco de dados.");
-		}
-		
-		
-		//System.out.print("Id do usuario: "+ id);
-		
-		return null;
-	}
 
 	public Usuario salvaUsuario(Usuario usuario1) {
 
