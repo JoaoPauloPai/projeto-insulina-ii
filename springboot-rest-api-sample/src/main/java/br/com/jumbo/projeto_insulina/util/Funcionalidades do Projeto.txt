@@ -11,4 +11,4 @@
 •	Salvar grau parentesco paciente/usuário  - ok
 •	Salvar sexo do paciente  - ok
 •	Calcular doses de insulina e salvar no BD - ok
-•	Gerar relatórios das doses aplicadas - 
+•	Gerar relatórios das doses aplicadas - ok

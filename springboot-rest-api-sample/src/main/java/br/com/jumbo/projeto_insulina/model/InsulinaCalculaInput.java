@@ -17,15 +17,12 @@ import javax.persistence.Table;
  *
  *         29 de ago. de 202 15:17:59
  */
-@Entity
-@Table(name = "insulina_calcula_input")
-@SequenceGenerator(name = "seq_insulina_calcula_input", sequenceName = "seq_insulina_calcula_input", allocationSize = 1, initialValue = 1)
+
 public class InsulinaCalculaInput implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_insulina_calcula_input")
 	private Long id;
 
 

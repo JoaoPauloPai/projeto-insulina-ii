@@ -151,14 +151,14 @@ public class UsuarioController {
 
 	@ResponseBody
 	@GetMapping(value = "**/buscaUsuarioPorEmail/{email}")
-	public ResponseEntity<List<Usuario>> buscaUsuarioPorEmail(@PathVariable("email") String nome)
+	public ResponseEntity<List<Usuario>> buscaUsuarioPorEmail(@PathVariable("email") String email)
 			throws ExceptionProjetoInsulina {
 
-		List<Usuario> usuarios = usuarioRepository.buscaUsuarioPorEmail(nome.toUpperCase());
+		List<Usuario> usuarios = usuarioRepository.buscaUsuarioPorEmail(email.toUpperCase());
 
 		if (usuarios.isEmpty()) {
 
-			throw new ExceptionProjetoInsulina("Email não cadastrado no BD");
+			throw new ExceptionProjetoInsulina("Email: " +"'"+ email +"'" + " não está cadastrado no BD");
 		}
 
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);

@@ -20,8 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
 import br.com.jumbo.projeto_insulina.dto.ObjetoRelatorioControleDose;
 import br.com.jumbo.projeto_insulina.model.ControleDose;
-import br.com.jumbo.projeto_insulina.model.Usuario;
+import br.com.jumbo.projeto_insulina.model.Paciente;
 import br.com.jumbo.projeto_insulina.repository.ControleDoseRepository;
+import br.com.jumbo.projeto_insulina.repository.PacienteRepository;
 import br.com.jumbo.projeto_insulina.service.ControleDoseService;
 
 /**
@@ -35,7 +36,10 @@ public class ControleDoseController {
 
 	@Autowired
 	private ControleDoseService controleDoseService;
-
+	
+	@Autowired
+	private PacienteRepository pacienteRepository;
+	
 	@ResponseBody
 	@PostMapping(value = "**/salvaCrontroleDose")
 	public ResponseEntity<ControleDose> salvarControleDose(@RequestBody @Valid ControleDose controleDose)
@@ -55,7 +59,10 @@ public class ControleDoseController {
 	@ResponseBody
 	@PostMapping(value = "**/relatorioDoseAplicada")
 	public ResponseEntity<List<ObjetoRelatorioControleDose>> relatorioDoseAplicada(
-			@Valid @RequestBody ObjetoRelatorioControleDose obejtoRequisicaoRelatorioDoseAplicada) {
+			@Valid @RequestBody ObjetoRelatorioControleDose obejtoRequisicaoRelatorioDoseAplicada) 
+					throws ExceptionProjetoInsulina {
+				
+
 
 		List<ObjetoRelatorioControleDose> retorno = new ArrayList<ObjetoRelatorioControleDose>();
 

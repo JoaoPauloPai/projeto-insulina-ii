@@ -23,6 +23,8 @@ public class ObjetoRelatorioControleDose implements Serializable {
 	private String dataFinal;
 
 	private String codigoPaciente = "";
+	
+	private String nomeUsuario = "";
 
 	private String nomePaciente = "";
 
@@ -33,6 +35,33 @@ public class ObjetoRelatorioControleDose implements Serializable {
 	public String getDataInicial() {
 		return dataInicial;
 	}
+	
+	
+	
+
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+
+
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
+	}
+
+
+
+
+	public String getCodigoPaciente() {
+		return codigoPaciente;
+	}
+
+
+	public void setCodigoPaciente(String codigoPaciente) {
+		this.codigoPaciente = codigoPaciente;
+	}
+
 
 	public void setDataInicial(String dataInicial) {
 		this.dataInicial = dataInicial;
@@ -46,9 +75,7 @@ public class ObjetoRelatorioControleDose implements Serializable {
 		this.dataFinal = dataFinal;
 	}
 
-	public String getCodigoPaciente() {
-		return codigoPaciente;
-	}
+
 
 	public String getNomePaciente() {
 		return nomePaciente;
@@ -74,8 +101,5 @@ public class ObjetoRelatorioControleDose implements Serializable {
 		this.doseAplicada = doseAplicada;
 	}
 
-	public void setCodigoPaciente(String codigoPaciente) {
-		this.codigoPaciente = codigoPaciente;
-	}
 
 }

@@ -31,13 +31,19 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 	@Query("select p from Paciente p where p.usuario.id = ?1")
 	List<Paciente> busaPacienteUsuario(Long id);
 
+	@Query("select u from Paciente u where u.id = ?1")
+	List<Paciente> buscaPacienteId(Long id);
+
+	@Query("select p from Paciente p where p.id = ?1")
+	List<Paciente> buscaPacienteObjetoId(Long codigoPaciente);
+
+
+	
 
 
 
 
 
-	//@Query("select p from Paciente p where p.usario Like %?1%")
-	//List<Paciente> buscaPacienteUsuarioId(Usuario usuario);
 
 
 

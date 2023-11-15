@@ -67,7 +67,8 @@ public class ControleDoseService {
 		        + " p.sexo as sexo, " 
 				+ " cd.data as dataDose, "
 				+ " cd.dose_aplicada as doseAplicada, " 
-				+ " cd.paciente_id as codigoPaciente " 
+				+ " cd.paciente_id as codigoPaciente,"
+				+ " u.nome as nomeUsuario " 
 				+ " from paciente as p "
 				+ " inner join controle_dose as cd on cd.paciente_id = p.id "
 				+ " inner join usuario as u on u.id = p.usuario_id ";
