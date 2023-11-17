@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
 import br.com.jumbo.projeto_insulina.dto.ObjetoRelatorioControleDose;
 import br.com.jumbo.projeto_insulina.model.ControleDose;
-import br.com.jumbo.projeto_insulina.model.Paciente;
-import br.com.jumbo.projeto_insulina.repository.ControleDoseRepository;
 import br.com.jumbo.projeto_insulina.repository.PacienteRepository;
 import br.com.jumbo.projeto_insulina.service.ControleDoseService;
 

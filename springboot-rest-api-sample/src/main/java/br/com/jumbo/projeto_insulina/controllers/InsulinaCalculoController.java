@@ -3,25 +3,14 @@
  */
 package br.com.jumbo.projeto_insulina.controllers;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
 import br.com.jumbo.projeto_insulina.model.InsulinaCalculaInput;
-import br.com.jumbo.projeto_insulina.model.Paciente;
-import br.com.jumbo.projeto_insulina.repository.PacienteRepository;
 import br.com.jumbo.projeto_insulina.service.InsulinaCalculoService;
 import br.com.jumbo.projeto_insulina.service.PacienteSevice;
 

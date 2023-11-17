@@ -33,8 +33,6 @@ import br.com.jumbo.projeto_insulina.repository.UsuarioRepository;
 @Controller
 @RestController
 public class PacienteController {
-	
-	
 
 	@Autowired
 	PacienteRepository pacienteRepository;
@@ -55,22 +53,22 @@ public class PacienteController {
 				throw new ExceptionProjetoInsulina("Já exixte Paciente cadastrado para este usuario.");
 
 			}
-					
+
 			List<Usuario> usuarios = usuarioRepository.buscaUsuarioId(paciente.getUsuario().getId());
-			
-			if(usuarios.isEmpty()) {
-				throw new ExceptionProjetoInsulina("O usuário com o Cod:" +paciente.getUsuario().getId()
-						+" não está cadastrado no banco de Dados.");
+
+			if (usuarios.isEmpty()) {
+				throw new ExceptionProjetoInsulina("O usuário com o Cod:" + paciente.getUsuario().getId()
+						+ " não está cadastrado no banco de Dados.");
 			}
 
 		}
-		
+
 		Paciente pacienteSalvo = pacienteRepository.save(paciente);
 
 		return new ResponseEntity<Paciente>(pacienteSalvo, HttpStatus.OK);
 
 	}
-	
+
 	@ResponseBody
 	@GetMapping(value = "**/listaPaciente")
 	public ResponseEntity<List<Paciente>> listaPaciente() {
@@ -80,19 +78,16 @@ public class PacienteController {
 		return new ResponseEntity<List<Paciente>>(paciente, HttpStatus.OK);
 
 	}
-	
-	
+
 	@ResponseBody
 	@DeleteMapping(value = "**/deletePacientePorId/{id}")
 	public ResponseEntity<?> deletePacientePorId(@PathVariable("id") Long id) throws ExceptionProjetoInsulina {
 
 		List<Paciente> pacientes = pacienteRepository.buscaPacienteId(id);
 		if (pacientes.isEmpty()) {
-			throw new ExceptionProjetoInsulina(
-					"O Paciente com Id: " + id + " não existe no Banco de Dados");
+			throw new ExceptionProjetoInsulina("O Paciente com Id: " + id + " não existe no Banco de Dados");
 		}
 
-	
 		pacienteRepository.deleteById(id);
 
 		return new ResponseEntity("Usuario deletado por Id com sucesso!", HttpStatus.OK);

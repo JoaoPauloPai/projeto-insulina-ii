@@ -15,20 +15,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.ManyToAny;
-
 /**
  * @author João Paulo
  *
  *         12 de mar. de 2023 15:54:56
- *    
+ * 
  */
 @Entity
 @Table(name = "controle_dose")
@@ -45,7 +42,7 @@ public class ControleDose implements Serializable {
 	@Column(nullable = false)
 	private double doseAplicada;
 
-	//@NotNull(message = "A data deve ser Informada")
+	// @NotNull(message = "A data deve ser Informada")
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Date data;

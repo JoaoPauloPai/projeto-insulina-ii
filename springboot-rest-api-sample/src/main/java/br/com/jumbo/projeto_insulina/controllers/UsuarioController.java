@@ -10,18 +10,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jumbo.projeto_insulina.ExceptionProjetoInsulina;
 import br.com.jumbo.projeto_insulina.model.Usuario;
@@ -93,11 +89,9 @@ public class UsuarioController {
 
 		List<Usuario> usuarios1 = usuarioRepository.buscaUsuarioId(id);
 		if (usuarios1.isEmpty()) {
-			throw new ExceptionProjetoInsulina(
-					"O Usuário com Id: " + id + " não existe no Banco de Dados");
+			throw new ExceptionProjetoInsulina("O Usuário com Id: " + id + " não existe no Banco de Dados");
 		}
 
-	
 		usuarioRepository.deleteById(id);
 
 		return new ResponseEntity("Usuario deletado por Id com sucesso!", HttpStatus.OK);
@@ -158,7 +152,7 @@ public class UsuarioController {
 
 		if (usuarios.isEmpty()) {
 
-			throw new ExceptionProjetoInsulina("Email: " +"'"+ email +"'" + " não está cadastrado no BD");
+			throw new ExceptionProjetoInsulina("Email: " + "'" + email + "'" + " não está cadastrado no BD");
 		}
 
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
@@ -179,6 +173,5 @@ public class UsuarioController {
 
 		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
 	}
-
 
 }
