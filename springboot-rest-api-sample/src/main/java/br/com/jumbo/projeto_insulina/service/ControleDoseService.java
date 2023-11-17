@@ -53,7 +53,12 @@ public class ControleDoseService {
 
 	/**
 	 * Este relatório permite saber as doses aplicada por pacientes, datas início e fim.
-	 * 
+	 * retorna
+	 * nome do usuário
+	 * nome do paciente
+	 * id do paciente
+	 * sexo do paciente
+	 * valor da dose aplicada
 	 * 
 	 * @param obejtoRequisicaoRelatorioDoseAplicada
 	 * @return
