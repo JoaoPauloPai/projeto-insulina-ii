@@ -51,8 +51,8 @@ public class UsuarioController {
 				throw new ExceptionProjetoInsulina("Já exixte Login com essa descrição: " + usuario.getLogin());
 
 			}
-			List<Usuario> usuarios1 = usuarioRepository.buscaUsuarioEmail(usuario.getEmail().toUpperCase());
-			if (!usuarios1.isEmpty()) {
+			List<Usuario> usuariosN = usuarioRepository.buscaUsuarioEmail(usuario.getEmail().toUpperCase());
+			if (!usuariosN.isEmpty()) {
 				throw new ExceptionProjetoInsulina(
 						"O email: " + usuario.getEmail() + " já está cadastrado no Banco de Dados");
 			}
@@ -60,12 +60,12 @@ public class UsuarioController {
 		}
 		if (usuario.getTipoSenha().getDescricao().equalsIgnoreCase("SIMPLES")) {
 
-			Usuario usuario1 = usuarioService.salvaUsuario(usuario);
+			Usuario usuarioNOVO = usuarioService.salvaUsuario(usuario);
 
 		}
 		if (usuario.getTipoSenha().getDescricao().equalsIgnoreCase("CRYPTO")) {
 
-			Usuario usuario1 = usuarioService.salvaSenhaCriptUsuario(usuario);
+			Usuario usuarioNovo = usuarioService.salvaSenhaCriptUsuario(usuario);
 
 		}
 
