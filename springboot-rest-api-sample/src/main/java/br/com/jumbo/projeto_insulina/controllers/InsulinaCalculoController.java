@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package br.com.jumbo.projeto_insulina.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jumbo.projeto_insulina.model.InsulinaCalculaInput;
+import br.com.jumbo.projeto_insulina.model.InsulinaCalculaDose;
 import br.com.jumbo.projeto_insulina.service.InsulinaCalculoService;
 import br.com.jumbo.projeto_insulina.service.PacienteSevice;
 
@@ -31,7 +29,7 @@ public class InsulinaCalculoController {
     private PacienteSevice pacienteSevice;
     
     @PostMapping("/calculaInsulina")
-    public ResponseEntity<String> calculateInsulinDose(@RequestBody InsulinaCalculaInput input) {
+    public ResponseEntity<String> calculateInsulinDose(@RequestBody InsulinaCalculaDose input) {
        
     	double insulinDose = insulinaCalculoService.calculateInsulinDose(input);
        

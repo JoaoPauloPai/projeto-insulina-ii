@@ -5,7 +5,7 @@ package br.com.jumbo.projeto_insulina.service;
 
 import org.springframework.stereotype.Service;
 
-import br.com.jumbo.projeto_insulina.model.InsulinaCalculaInput;
+import br.com.jumbo.projeto_insulina.model.InsulinaCalculaDose;
 
 /**
  * @author João Paulo
@@ -22,7 +22,7 @@ public class InsulinaCalculoService {
 	// glicose acima do alvo
 	private static final double SENSITIVITY_FACTOR = 0.1;
 
-	public double calculateInsulinDose(InsulinaCalculaInput input) {
+	public double calculateInsulinDose(InsulinaCalculaDose input) {
 
 		double carbDose = input.getQuantiCarbo() * CARB_RATIO;
 		double glucoseCorrection = (input.getNivelGlicose() - 100) * SENSITIVITY_FACTOR;

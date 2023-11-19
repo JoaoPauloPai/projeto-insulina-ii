@@ -11,8 +11,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
+ * @author João Paulo
  *
- * Spring Boot application starter class
+ *         5 de mar. de 2023 18:01:22
  */
 @SpringBootApplication
 @EnableAsync

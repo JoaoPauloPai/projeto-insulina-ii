@@ -13,7 +13,7 @@ import javax.persistence.Id;
  *         29 de ago. de 202 15:17:59
  */
 
-public class InsulinaCalculaInput implements Serializable {
+public class InsulinaCalculaDose implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -63,7 +63,7 @@ public class InsulinaCalculaInput implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		InsulinaCalculaInput other = (InsulinaCalculaInput) obj;
+		InsulinaCalculaDose other = (InsulinaCalculaDose) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

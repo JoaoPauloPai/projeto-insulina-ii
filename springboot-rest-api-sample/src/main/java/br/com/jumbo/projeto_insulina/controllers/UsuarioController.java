@@ -68,7 +68,6 @@ public class UsuarioController {
 			Usuario usuarioNovo = usuarioService.salvaSenhaCriptUsuario(usuario);
 
 		}
-
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 
 	}
