@@ -10,33 +10,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jumbo.projeto_insulina.model.InsulinaCalculaDose;
 import br.com.jumbo.projeto_insulina.service.InsulinaCalculoService;
-import br.com.jumbo.projeto_insulina.service.PacienteSevice;
 
 /**
  * @author João Paulo
  *
- * 29 de ago. de 2023
- * 17:23:59
+ *         29 de ago. de 2023 17:23:59
  */
 @Controller
-@RestController	
+@RestController
 public class InsulinaCalculoController {
-	
-    @Autowired
-    private InsulinaCalculoService insulinaCalculoService;
-  
-    @Autowired
-    private PacienteSevice pacienteSevice;
-    
-    @PostMapping("/calculaInsulina")
-    public ResponseEntity<String> calculateInsulinDose(@RequestBody InsulinaCalculaDose input) {
-       
-    	double insulinDose = insulinaCalculoService.calculateInsulinDose(input);
-       
-    	String response = "A dose de insulina a ser aplicada é: " + insulinDose + " unidades.";
 
-        return ResponseEntity.ok(response);
-    }
-	
+	@Autowired
+	private InsulinaCalculoService insulinaCalculoService;
+
+	@PostMapping("/calculaInsulina")
+	public ResponseEntity<String> calculaInsulina(@RequestBody InsulinaCalculaDose doseInsulina) {
+
+		double insulinDose = insulinaCalculoService.calculaInsulinaDose(doseInsulina);
+
+		String response = "A dose de insulina a ser aplicada é: " + insulinDose + " unidades.";
+
+		return ResponseEntity.ok(response);
+	}
 
 }

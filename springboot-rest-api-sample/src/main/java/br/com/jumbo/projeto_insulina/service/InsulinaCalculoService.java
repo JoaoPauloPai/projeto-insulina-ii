@@ -16,18 +16,18 @@ import br.com.jumbo.projeto_insulina.model.InsulinaCalculaDose;
 public class InsulinaCalculoService {
 
 	// Fator de carboidrato: quantas unidades de insulina por grama de carboidrato
-	private static final double CARB_RATIO = 0.5;
+	private static final double CARBO_FATOR = 0.5;
 
 	// Fator de sensibilidade à insulina: quantas unidades de insulina por mg/dL de
 	// glicose acima do alvo
-	private static final double SENSITIVITY_FACTOR = 0.1;
+	private static final double GLICOSE_FATOR = 0.1;
 
-	public double calculateInsulinDose(InsulinaCalculaDose input) {
+	public double calculaInsulinaDose(InsulinaCalculaDose doseInsulina) {
 
-		double carbDose = input.getQuantiCarbo() * CARB_RATIO;
-		double glucoseCorrection = (input.getNivelGlicose() - 100) * SENSITIVITY_FACTOR;
+		double carboDoseCorrigida = doseInsulina.getQuantiCarbo() * CARBO_FATOR;
+		double glicoseCorrigida = (doseInsulina.getNivelGlicose() - 100) * GLICOSE_FATOR;
 
-		double totalDose = carbDose + glucoseCorrection;
+		double totalDose = carboDoseCorrigida + glicoseCorrigida;
 
 		return totalDose;
 	}

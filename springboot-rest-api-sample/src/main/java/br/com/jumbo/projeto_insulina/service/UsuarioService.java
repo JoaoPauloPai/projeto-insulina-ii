@@ -3,10 +3,6 @@
  */
 package br.com.jumbo.projeto_insulina.service;
 
-import java.util.Calendar;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
